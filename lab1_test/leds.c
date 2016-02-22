@@ -1,6 +1,6 @@
 /*
 * File:   leds.c
-* Author: 
+* Author: Dom Stephens
 *
 * Created on December 27, 2014, 1:31 PM
 */
@@ -15,8 +15,8 @@
 
 void initLEDs(){
     //Initializes LEDs
-    TRISDbits.TRISD2 = OUTPUT;
-    LATDbits.LATD2 = OFF;
+    TRISDbits.TRISD1 = OUTPUT;
+    LATDbits.LATD1 = OFF;
     
 
 }
@@ -25,11 +25,11 @@ void turnOnLED(int led){
     //Turns on corresponding LED
     if (led == 0)
     {
-        LATDbits.LATD2 = ON;
+        LATDbits.LATD1 = ON;
 
     }else if (led == 1)
     {
-        LATDbits.LATD2 = OFF;
+        LATDbits.LATD1 = OFF;
     }
     
 }

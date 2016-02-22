@@ -1,10 +1,10 @@
-// ******************************************************************************************* //
+    // ******************************************************************************************* //
 //
 // File:         lab1p1.c
 // Date:         
-// Authors:  Dom    
+// Authors:  Dom Stephens
 //
-// Description: Part 1 for lab 1
+// Description: Part 1 for lab 1 testing the delay function
 // ******************************************************************************************* //
 
 #include <xc.h>
@@ -37,26 +37,19 @@ int main(void)
     enableInterrupts(); 
     
     initLEDs();
-    initTimer2();
-    initSW1();
+    initTimer1();
+//    initSW1();
    
     
     
     while(1){
         
-        switch(state){
-            
-        case ledON:
+
             turnOnLED(0);
-            break;
-            
-        case ledOFF:
+            delayUs(50);//delays 50us
             turnOnLED(1);
-            break; 
-        
-            
-        } 
-        
+            delayUs(50);//delays 50us
+ 
     }
     
     return 0;
@@ -65,29 +58,29 @@ int main(void)
 //interrupt service routines that manage the change of states
 //for particular events as needed
 
-void __ISR(_CHANGE_NOTICE_VECTOR,IPL7SRS) _CNInterupt(void){
-    sw = PORTDbits.RD6;
-    IFS1bits.CNDIF = FLAG_DOWN;
-    
-    
-    if(sw == 0)
-    {
-        
-        switch(state)
-        {
-            case ledOFF: state = DB1; break;
-            
-            case ledON: state = DB2;break;       
-        }
-    }else if(sw == 1)
-    {
-        
-            switch(state)
-            {
-            case DB1: delayUs(5); state = ledON; break;
-            
-            case DB2: delayUs(5); state = ledOFF; break;
-                
-            }
-    }   
-}
+//void __ISR(_CHANGE_NOTICE_VECTOR,IPL7SRS) _CNInterupt(void){
+//    sw = PORTDbits.RD6;
+//    IFS1bits.CNDIF = FLAG_DOWN;
+//    
+//    
+//    if(sw == 0)
+//    {
+//        
+//        switch(state)
+//        {
+//            case ledOFF: state = DB1; break;
+//            
+//            case ledON: state = DB2;break;       
+//        }
+//    }else if(sw == 1)
+//    {
+//        
+//            switch(state)
+//            {
+//            case DB1: delayUs(5); state = ledON; break;
+//            
+//            case DB2: delayUs(5); state = ledOFF; break;
+//                
+//            }
+//    }   
+//}
